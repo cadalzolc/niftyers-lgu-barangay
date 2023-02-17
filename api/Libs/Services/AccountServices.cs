@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace Niftyers;
 
 public class AccountServices : IAccountServices {
@@ -7,7 +9,7 @@ public class AccountServices : IAccountServices {
         dbUsers = _dbUsers;
     }
 
-    public ResponseUserList GetAllUsers() {
+    public ResponseUserList UserList() {
         var lst =  dbUsers.List().Select(u => new DtoUserInfo() {
             Id = u.Id.ToString(),
             Name = u.Name,
@@ -121,5 +123,36 @@ public class AccountServices : IAccountServices {
 
         return Result; 
     }
+
+    public ResponseUser UserFindById(string id)
+    {
+        var Result = new ResponseUser();
+
+        if (id == null || id == "")
+        {
+            Result.Message = "Id is Required";
+            return Result;
+        }
+
+        var UserResult = dbUsers.Find(User => User.Id.ToString() == id);
+        
+        if (UserResult == null)
+        {
+            Result.Message = "User Not-Found";
+            return Result;
+        }
+
+        Result.Data = new DtoUserInfo(){
+            Id = UserResult.Id.ToString(),
+            Name = UserResult.Name,
+            Username = UserResult.Username,
+            Password = UserResult.Password
+        };
+        Result.Success = true;
+        Result.Message = "User found";
+        
+        return Result;
+    }
+    
 
 }
