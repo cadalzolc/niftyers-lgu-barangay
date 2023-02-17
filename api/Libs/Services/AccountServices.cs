@@ -153,6 +153,60 @@ public class AccountServices : IAccountServices {
         
         return Result;
     }
+
+    public ResponseUserList UserSearch(PayloadSearch payload)
+    {
+        var Result = new ResponseUserList();
+
+        if (payload.ColumnName == null || payload.ColumnName == "")
+        {
+           Result.Message = " Column name is Required ";
+           return Result;
+        }
+       
+        if (payload.Qualifier == null || payload.Qualifier == "")
+        {
+           Result.Message = " Qualifier is Required";
+           return Result;
+        }
+
+        var LstUser = new List<User>();
+
+        switch(payload.Qualifier) {
+            case "==":
+                if (payload.ColumnName == "name") {
+                    LstUser = dbUsers.List(user => user.Name == payload.Value).ToList();
+                } else {
+                    LstUser = dbUsers.List(user => user.Username == payload.Value).ToList();
+                }
+            break;
+            case "()":
+                if (payload.ColumnName == "name") {
+                    LstUser = dbUsers.List(user => user.Name.ToLower().Contains(payload.Value.ToLower())).ToList();
+                } else {
+                    LstUser = dbUsers.List(user => user.Username.ToLower().Contains(payload.Value.ToLower())).ToList();
+                }
+            break;
+            case "!=":
+                if (payload.ColumnName == "name") {
+                    LstUser = dbUsers.List(user => user.Name != payload.Value).ToList();
+                } else {
+                    LstUser = dbUsers.List(user => user.Username != payload.Value).ToList();
+                }
+            break;
+        }
+
+        Result.Data = LstUser.Select(u => new DtoUserInfo {
+            Id = u.Id.ToString(),
+            Name = u.Name,
+            Username = u.Username,
+            Password = u.Password
+        });
+        Result.Success = true;
+        Result.Message = string.Format("{0} records found", LstUser.Count());
+            
+        return Result;
+    }
     
 
 }
