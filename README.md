@@ -6,7 +6,7 @@
 Are you interested? `Starred` and `Fork` the reposiory, `Clone` the forked reposiory to your local machine i.e (PC or Desktop).
 Create a `new branch` for your new changes. Please follow the `standard branch naming`.
 After coding completion. `Push` your changes to the fork repository.
-Create a `Pull Request (PR)` and `add details to comment section` of your PR so that our team can reveiw and test your changes.
+Create a `Pull Request (PR)` and `add details to comment section` of your PR so that our team can review and test your changes.
 
 ## STANDARD BRANCH NAMING
 > We will not approve PR if your branch does not follow the standard naming
