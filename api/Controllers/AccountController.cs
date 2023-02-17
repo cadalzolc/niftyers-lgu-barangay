@@ -44,5 +44,11 @@ public class AccountController : ControllerBase
         var result = svsAccount.UserFindById(id);
         return Ok(result);
     }
+    [HttpGet("user/search")]
+    public IActionResult UserSearch([FromBody] PayloadSearch payload)
+    {
+        var result = svsAccount.UserSearch(payload);
+        return Ok(result);
+    }
 
 }

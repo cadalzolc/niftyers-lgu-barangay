@@ -8,5 +8,6 @@ public interface IAccountServices
     ResponseUser UserUpdate(PayloadUser payload);
     Response UserDelete(PayloadUser payload);
     ResponseUser UserFindById(string id);
+    ResponseUserList UserSearch(PayloadSearch payload);
 
 }
