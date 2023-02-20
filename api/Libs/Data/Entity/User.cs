@@ -4,14 +4,11 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Niftyers;
 
-public class User 
+public class User : Login
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public Guid Id { get; set; }
     public string Name { get; set; } = string.Empty;
-    public string  Username { get; set; } = string.Empty;
-    public string Password { get; set; } = string.Empty;
-
     public class Configuration : EntityConfigurationBase<User> {
         public override void Configure(EntityTypeBuilder<User> entity)
         {
