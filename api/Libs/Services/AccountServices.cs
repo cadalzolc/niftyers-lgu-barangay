@@ -26,13 +26,20 @@ public class AccountServices : IAccountServices {
     public ResponseUser UserCreate(PayloadUser payload)
     {
         var Result = new ResponseUser();
+        var dup = dbUsers.Exists(user => user.Username == payload.Username);
+
+        if(dup == true) {
+            Result.Message = "Username already exists";
+            return Result;
+        }
+
         var NewUser = new User() {
             Id = Guid.NewGuid(),
             Name = payload.Name,
             Username = payload.Username,
             Password = payload.Password
         };
-      
+
         var IsCreated = dbUsers.Create(NewUser);
 
         if (IsCreated == false) {
@@ -58,6 +65,13 @@ public class AccountServices : IAccountServices {
         
         if (payload.Id == null || payload.Id == "") {
             Result.Message = "ID is Required";
+            return Result;
+        }
+
+        var dup = dbUsers.Exists(user => user.Username == payload.Username &&  user.Id.ToString() != payload.Id);
+
+        if(dup == true) {
+            Result.Message = "Username already exists";
             return Result;
         }
 
