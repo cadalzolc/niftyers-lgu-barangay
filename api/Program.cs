@@ -1,3 +1,7 @@
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 using Niftyers;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -24,5 +28,6 @@ app.UseCors("corsapp");
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapControllerRoute(name: "default", pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

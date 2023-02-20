@@ -2,9 +2,12 @@ namespace Niftyers;
 
 public interface IAccountServices 
 {
-    ResponseUserList GetAllUsers();
+     
+    ResponseUserList UserList();
     ResponseUser UserCreate(PayloadUser payload);
     ResponseUser UserUpdate(PayloadUser payload);
     Response UserDelete(PayloadUser payload);
+    ResponseUser UserFindById(string id);
+    ResponseUserList UserSearch(PayloadSearch payload);
 
 }

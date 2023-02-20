@@ -34,6 +34,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
         return Table;
     }
 
+    public IQueryable<TEntity> List(Func<TEntity, bool> predicate)
+    {
+        return Table.Where(predicate).AsQueryable();
+    }
+
     public bool Create(TEntity entity)
     {
         Context.Set<TEntity>().Add(entity);

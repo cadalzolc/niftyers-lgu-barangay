@@ -12,9 +12,9 @@ public class AccountController : ControllerBase
         svsAccount = _svsAccount;
     }
 
-    public IActionResult All() 
+    public IActionResult Get() 
     {
-        var lst = svsAccount.GetAllUsers();
+        var lst = svsAccount.UserList();
         return Ok(lst);
     }
 
@@ -35,7 +35,20 @@ public class AccountController : ControllerBase
     public IActionResult UserDelete([FromBody] PayloadUser payload)
     {
         var result = svsAccount.UserDelete(payload);
-        return Ok( result);
+        return Ok(result);
+    }
+
+    [HttpGet("user/{id?}")]
+    public IActionResult FindUser(string id)
+    {
+        var result = svsAccount.UserFindById(id);
+        return Ok(result);
+    }
+    [HttpGet("user/search")]
+    public IActionResult UserSearch([FromBody] PayloadSearch payload)
+    {
+        var result = svsAccount.UserSearch(payload);
+        return Ok(result);
     }
 
 }
