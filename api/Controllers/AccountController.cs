@@ -14,40 +14,40 @@ public class AccountController : ControllerBase
 
     public IActionResult Get() 
     {
-        var lst = svsAccount.UserList();
+        var lst = svsAccount.List();
         return Ok(lst);
     }
 
     [HttpPost("user/create")]
     public IActionResult UserCreate([FromBody] PayloadUser payload) 
     {     
-        var result = svsAccount.UserCreate(payload);
+        var result = svsAccount.Create(payload);
         return Ok(result);
     }
 
     [HttpPost("user/update")]
     public IActionResult UserUpdate([FromBody] PayloadUser payload)
     {
-        var result = svsAccount.UserUpdate(payload);
+        var result = svsAccount.Update(payload);
         return Ok(result);
     }
     [HttpPost("user/delete")]
     public IActionResult UserDelete([FromBody] PayloadUser payload)
     {
-        var result = svsAccount.UserDelete(payload);
+        var result = svsAccount.Delete(payload);
         return Ok(result);
     }
 
     [HttpGet("user/{id?}")]
     public IActionResult FindUser(string id)
     {
-        var result = svsAccount.UserFindById(id);
+        var result = svsAccount.FindById(id);
         return Ok(result);
     }
     [HttpGet("user/search")]
     public IActionResult UserSearch([FromBody] PayloadSearch payload)
     {
-        var result = svsAccount.UserSearch(payload);
+        var result = svsAccount.Search(payload);
         return Ok(result);
     }
 

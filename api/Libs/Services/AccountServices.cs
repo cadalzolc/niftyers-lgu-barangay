@@ -9,7 +9,7 @@ public class AccountServices : IAccountServices {
         dbUsers = _dbUsers;
     }
 
-    public ResponseUserList UserList() {
+    public ResponseUserList List() {
         var lst =  dbUsers.List().Select(u => new DtoUserInfo() {
             Id = u.Id.ToString(),
             Name = u.Name,
@@ -23,7 +23,7 @@ public class AccountServices : IAccountServices {
         };
     }
 
-    public ResponseUser UserCreate(PayloadUser payload)
+    public ResponseUser Create(PayloadUser payload)
     {
         var Result = new ResponseUser();
         var dup = dbUsers.Exists(user => user.Username == payload.Username);
@@ -59,7 +59,7 @@ public class AccountServices : IAccountServices {
         return Result;
     }
 
-    public ResponseUser UserUpdate(PayloadUser payload)
+    public ResponseUser Update(PayloadUser payload)
     {
         var Result = new ResponseUser();
         
@@ -107,7 +107,7 @@ public class AccountServices : IAccountServices {
 
     }
 
-    public Response UserDelete(PayloadUser payload)
+    public Response Delete(PayloadUser payload)
     {
         var Result = new Response();
 
@@ -138,7 +138,7 @@ public class AccountServices : IAccountServices {
         return Result; 
     }
 
-    public ResponseUser UserFindById(string id)
+    public ResponseUser FindById(string id)
     {
         var Result = new ResponseUser();
 
@@ -168,7 +168,7 @@ public class AccountServices : IAccountServices {
         return Result;
     }
 
-    public ResponseUserList UserSearch(PayloadSearch payload)
+    public ResponseUserList Search(PayloadSearch payload)
     {
         var Result = new ResponseUserList();
 

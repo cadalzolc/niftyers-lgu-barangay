@@ -14,11 +14,13 @@ public class NiftyersDB : DbContext {
     }
 
     public DbSet<User> Users { get; set; }
-    
+    public DbSet<Resident> Residents { get; set; }
+
     protected override void OnModelCreating(ModelBuilder builder) {
         base.OnModelCreating(builder);
 
-        builder.ApplyConfiguration(new User.Configuration());
+        builder.ApplyConfiguration(new User.Configuration())
+                .ApplyConfiguration(new Resident.Configuration());
     }
 
 }

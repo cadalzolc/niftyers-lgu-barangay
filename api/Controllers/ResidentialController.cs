@@ -7,15 +7,17 @@ namespace Niftyers;
 
 public class ResidentialController : ControllerBase 
 {
-    //readonly svsResidential;
-    //public ResidentialController(IAccountServices _svsRedisdential){
-        //svsResidential = _svsRedisdential;
-    //}
 
+    readonly IResidentServices svcResident;
+    public ResidentialController(IResidentServices injectRes) 
+    {
+        svcResident = injectRes;
+    }
+    [HttpGet("resident/list")]
     public IActionResult Get()
     {
-        //var lst = svsResidential.UserList();
-        return Ok();
+        var lst = svcResident.List();
+        return Ok(lst);
     }
 
     [HttpGet("user/create/residential")]

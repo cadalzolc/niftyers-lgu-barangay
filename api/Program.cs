@@ -10,9 +10,11 @@ builder.Services.AddDbContext<NiftyersDB>();
 builder.Services.AddSingleton<IConfig>(builder.Configuration.GetSection("Config").Get<Config>());
 builder.Services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 builder.Services.AddTransient<IAccountServices, AccountServices>();
+builder.Services.AddTransient<IResidentServices, ResidentServices>();
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
+
 
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
