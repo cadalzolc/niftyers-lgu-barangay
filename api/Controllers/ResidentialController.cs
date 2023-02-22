@@ -20,17 +20,17 @@ public class ResidentialController : ControllerBase
         return Ok(lst);
     }
 
-    [HttpGet("user/create/residential")]
-    public IActionResult UserResidentialCreate([FromBody] PayloadUser payload)
+    [HttpGet("create/resident")]
+    public IActionResult ResidentCreate([FromBody] PayloadResident payload)
     {
-        //var result = svsResidential.UserCreate(payload);
-        return Ok();
+        var result = svcResident.Create(payload);
+        return Ok(result);
     }
-    [HttpPost("user/update/residential")]
-    public IActionResult UserResidentialUpdate([FromBody] PayloadUser payload)
+    [HttpPost("update/resident")]
+    public IActionResult ResidentUpdate([FromBody] PayloadResident payload)
     {
-        //var result = svsResidential.UserUpdate(payload);
-        return Ok();
+        var result = svcResident.Update(payload);
+        return Ok(result);
     }
     [HttpGet("user/Delete/residential")]
     public IActionResult UserResidentialDelete([FromBody] PayloadUser payload)

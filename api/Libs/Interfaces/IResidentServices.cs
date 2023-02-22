@@ -1,7 +1,8 @@
 namespace Niftyers; 
 
-public interface IResidentServices 
+public interface IResidentServices
 {
     Response List();
-    Response Create();
+    Response Create(PayloadResident payload);
+    Response Update(PayloadResident payload);
 }

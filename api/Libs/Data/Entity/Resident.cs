@@ -16,6 +16,7 @@ public class Resident : Person
         {
             entity.HasKey(p => p.ID).HasName("IX_ResidentID");
             entity.HasIndex(p => p.No).IsUnique();
+            entity.Property(p => p.No).HasDefaultValue("").HasMaxLength(30);
             entity.Property(p => p.LastName).HasDefaultValue("").HasMaxLength(30);
             entity.Property(p => p.FirstName).HasDefaultValue("").HasMaxLength(30);
             entity.Property(p => p.MidleName).HasDefaultValue("").HasMaxLength(30);
