@@ -61,15 +61,63 @@ public class ResidentServices : IResidentServices  {
     }
     public Response Update(PayloadResident payload)
     {
-        var result = new Response();
+        var result = new ResidentsResponse();
 
         if (payload.ID == null || payload.ID == ""){
-            result.Message = "ID is Required";
+           result.Message = "ID is Required";
             return result;
         } 
+        var NotResident = repositoryResident.Find(Response => Response.ID.ToString() == payload.ID);
+        
+        if (NotResident == null )
+        {
+            result.Message = "Resident Not Found";
+            return result;
+        } 
+
+        NotResident.FirstName = payload.FirstName;
+        NotResident.LastName = payload.LastName;
+        NotResident.MidleName = payload.MidleName;
+        NotResident.Gender = payload.Gender;
+        NotResident.BirthDate = payload.BirthDate;
+        NotResident.Age = 0;
+        NotResident.CivilStatus = payload.CivilStatus;
+        NotResident.Address = payload.Address;
+        NotResident.Occupation = payload.Occupation;
+        NotResident.ContactNumber = payload.ContactNumber;
+
+
+        var Isresident = repositoryResident.Update(NotResident);
+
+        if (Isresident == false){
+            result.Message = "User Update Falied";
+            return result;
+        }
+
+        result.Data = new DtoResident(){
+            ID = NotResident.ID.ToString(),
+            NO = NotResident.No,
+            FirstName = NotResident.FirstName,
+            LastName = NotResident.LastName,
+            MidleName = NotResident.MidleName,
+            Gender = NotResident.Gender,
+            BirthDate = NotResident.BirthDate,
+            Age = "0",
+            CivilStatus = NotResident.CivilStatus,
+            Address = NotResident.Address,
+            Occupation = NotResident.Occupation,
+            ContactNumber = NotResident.ContactNumber
+
+
+
+        };
+        result.Success = true;
+        result.Message = "Successly Updated";
+                
+                    
+
         return result;
     }
 
-    
-    
 }
+

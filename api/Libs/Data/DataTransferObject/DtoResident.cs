@@ -14,3 +14,9 @@ public class DtoResident {
     public string Occupation { get; set; } = "";
     public string ContactNumber { get; set; } = "";
 }
+
+public class DtoResidentInfo : Response
+{
+  public string ID { get; set; } = "";
+  public string No { get; set; } = "";
+}

@@ -12,4 +12,5 @@ public interface IRespositoryResident<Tentity> where Tentity: class
     IQueryable<Tentity> List(Func<Tentity, bool> predicate);
     bool Create(Tentity entity);
     bool Update(Tentity entity);
+    //bool Exists(Func<Tentity, bool> predicate);
 }
