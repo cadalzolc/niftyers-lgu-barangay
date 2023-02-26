@@ -23,6 +23,19 @@ Create a `Pull Request (PR)` and `add details to comment section` of your PR so 
   - [Github Username](#Username)/[Actions](#Actions)/[Tasks](#Tasks)
   - Ex: niftyers/features/created-base-project
 
+## HOW TO RUN THE PROJECT
+
+#Frontend - Web (Vue 3)
+```javascript
+  npm install
+  npm run dev
+```
+  
+#Frontend - Api (Net6.0 C#)
+```javascript
+  dotnet run
+```
+
 ## DATA DIRECTORY
 | Features Name | Description | Status |
 |---------------|-------------|--------|
