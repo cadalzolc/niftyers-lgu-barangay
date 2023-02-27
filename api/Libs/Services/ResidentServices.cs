@@ -94,7 +94,7 @@ public class ResidentServices : IResidentServices  {
             return result;
         }
 
-        result.Data = new DtoResident(){
+         result.Data = new DtoResident(){
             ID = NotResident.ID.ToString(),
             NO = NotResident.No,
             FirstName = NotResident.FirstName,
@@ -106,18 +106,92 @@ public class ResidentServices : IResidentServices  {
             CivilStatus = NotResident.CivilStatus,
             Address = NotResident.Address,
             Occupation = NotResident.Occupation,
-            ContactNumber = NotResident.ContactNumber
-
-
+            ContactNumber = NotResident.ContactNumber,
 
         };
         result.Success = true;
         result.Message = "Successly Updated";
-                
-                    
 
         return result;
     }
 
-}
+    public Response Delete(PayloadResident payload)
+    {
+       var result = new ResidentsResponse();
 
+        if (payload.ID == null || payload.ID == "") {
+            
+            result.Message = " ID is Required";
+            return result;
+
+        }
+
+        var Resident = repositoryResident.Find( Resident => Resident.ID.ToString() == payload.ID );
+
+        if (payload.ID == null)
+        {
+        
+        result.Message = "Resident Not Found";
+        return result;
+
+        }
+
+        Resident.No = payload.NO;
+        Resident.FirstName = payload.FirstName;
+        Resident.LastName = payload.LastName;
+        Resident.MidleName = payload.MidleName;
+        Resident.Gender = payload.Gender;
+        Resident.BirthDate = payload.BirthDate;
+        Resident.Age = 0;
+        Resident.CivilStatus = payload.CivilStatus;
+        Resident.Occupation = payload.Occupation;
+        Resident.ContactNumber = payload.ContactNumber;
+
+        var IsDeleted = repositoryResident.Delete(Resident);
+
+        result.Success = true;
+        result.Message = "Successfully Deleted!";
+
+        return result;
+       
+}
+    public ResidentsResponse Find(string ID)
+    {
+         var result = new ResidentsResponse();
+
+         if (ID == null || ID == "")
+         {
+            result.Message = "Residents ID Required";
+            return result;
+         } 
+         
+         var Resident = repositoryResident.Find(resident => resident.ID.ToString() == ID);
+
+         if ( Resident == null)
+         {
+            result.Message = "Resident Not-Found";
+            return result;
+         } 
+         result.Data = new DtoResident(){
+
+            FirstName = Resident.FirstName,
+            MidleName = Resident.MidleName,
+            LastName = Resident.LastName,
+            Gender = Resident.Gender,
+            BirthDate = Resident.BirthDate,
+            Age = "0",
+            Address = Resident.Address,
+            Occupation = Resident.Occupation,
+            ContactNumber = Resident.ContactNumber,
+        
+         };
+         result.Success = true;
+         result.Message = "Resident Found";
+         
+
+         return result;
+    }
+    
+
+     
+}
