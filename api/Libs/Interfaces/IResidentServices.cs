@@ -2,10 +2,10 @@ namespace Niftyers;
 
 public interface IResidentServices
 {
-    Response List();
+    ResidentsResponseList List();
     Response Create(PayloadResident payload);
     Response Update(PayloadResident payload);
     Response Delete(PayloadResident payload);
     ResidentsResponse Find(string ID);
-    //ResidentsResponseList 
+    ResidentsResponseList Search(PayloadResidentSearch payload);
 }

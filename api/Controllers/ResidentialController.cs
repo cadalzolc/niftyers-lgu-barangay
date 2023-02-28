@@ -45,9 +45,9 @@ public class ResidentialController : ControllerBase
         return Ok(result);
     }
     [HttpGet("Resident/Search")]
-    public IActionResult ResidentSearch([FromBody] PayloadResident payload)
+    public IActionResult ResidentSearch([FromBody] PayloadResidentSearch payload)
     {
-        //var result = svcResident.Search(payload);
-        return Ok();
+        var result = svcResident.Search(payload);
+        return Ok(result);
     }
 }
