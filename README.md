@@ -31,7 +31,7 @@ Create a `Pull Request (PR)` and `add details to comment section` of your PR so 
   npm run dev
 ```
   
-#Frontend - Api (Net6.0 C#)
+#Backend - Api (Net6.0 C#)
 ```javascript
   dotnet run
 ```
