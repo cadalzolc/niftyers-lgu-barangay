@@ -15,7 +15,6 @@ builder.Services.AddTransient<IResidentServices, ResidentServices>();
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 
-
 builder.Services.AddCors(p => p.AddPolicy("corsapp", builder =>
     {
         builder.WithOrigins("*").AllowAnyMethod().AllowAnyHeader();
